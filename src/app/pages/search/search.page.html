@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar artistas</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col size="10">
+      <ion-searchbar placeholder="Busca tu artista preferido" (ionChange)="loadSearch($event)"></ion-searchbar>
+    </ion-col>
+    <ion-col size="2" class="">
+      <ion-button expand="block" color="medium" style="width: 50px; height: 50px;" (click)="buscar()" style="margin-right: 10px;"><ion-icon name="search" size="large"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list *ngIf="isSearch === true">
+    <ion-item *ngFor="let c of canciones" style="margin-top: 5px;">
+      <ion-img [src]="c.album.cover_small"></ion-img>
+      <ion-label style="margin-left: 10px;">{{c.title}}</ion-label>
+      <ion-chip (click)="guardar(c.id)">add <ion-icon name="add"></ion-icon></ion-chip>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
